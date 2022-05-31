@@ -1,4 +1,12 @@
 # Sign-language
-- link of colab file  : https://colab.research.google.com/drive/1Rxp1YggNCi2AzQvHRy4puj82aSQ4enC8?usp=sharing
-- Drive link of test  : https://drive.google.com/drive/u/1/folders/18e1F1n1SWPF8lUF8pCKdUzSzKAbmSbVN
-- Drive link of train : https://drive.google.com/drive/u/1/folders/1-XTAjPPRPFeRqu3848z8dMXaolILWizn
+- link of colab file  : https://colab.research.google.com/drive/1JjcAAYZR43975aWQu8jv4tDkTuHbd3_F?usp=sharing
+
+
+## Custom Training
+For best accuracy, please train custom model using your hands by running the following command in terminal (after installing all the dependencies):
+- python self_train\detect_and_train.py -n [NAME]
+where, [NAME] is the name of the persons whos hand is being registered.
+
+After training has been completed, run hand_track.py using the following command:
+- python hand_track.py -n [NAME]
+where, [NAME] is the name of the persons whos trained model is available.
