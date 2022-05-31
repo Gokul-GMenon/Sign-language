@@ -1,0 +1,1 @@
+# The training images of each user will be saved here
