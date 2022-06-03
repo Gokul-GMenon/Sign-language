@@ -5,6 +5,7 @@ def train(name):
 
     # Path of the file containing the images
     PATH = os.path.join('training_images', name)
+    
     # Importing the model and setting all the current layers as non-trainable
 
     from keras.models import model_from_json
@@ -56,7 +57,6 @@ def train(name):
     final_model.add(Dense(27, activation='sigmoid'))
 
     import tensorflow as tf
-    # tf.keras.losses.BinaryCrossentropy
 
     final_model.compile(
         optimizer='adam',

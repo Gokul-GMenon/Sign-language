@@ -8,6 +8,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('-n', '--name', required=True, help = 'name of the new user')
 args = ap.parse_args()
 name = ''
+last_closed = 0
 
 if os.path.exists(os.path.join('Custom_models', args.name + '_Model.h5')):
 
@@ -32,7 +33,6 @@ cap.set(4, 720)
 detector = HandDetector(detectionCon = 0.5, maxHands = 2)
 
 sz1, sz2 = 600, 425
-# signs = cv.resize(cv.imread(os.path.join('self_train', 'Indian-sgn-lang-hand-sign.png')), (sz1, sz2))
 signs = cv.resize(cv.imread(os.path.join('self_train', 'american_sign_lang.png')), (sz1, sz2))
 
 letter = ''
@@ -40,7 +40,10 @@ letter_prv = ''
 
 count_c = 0
 count_w = 0
-word = ''
+max_words = 7
+word = ['']*max_words
+wc=0
+print(word)
 
 while True:
 
@@ -49,7 +52,6 @@ while True:
     
     # Find hands
     lm = detector.findHands(frame, draw = False)
-    # lm, bbox = detector.findPosition(img)
 
     x1 = y1 = x2 = y2 = ''
 
@@ -81,19 +83,20 @@ while True:
                 y1 = yr_1
                 y2 = yl_2
 
-            # print('\n\n', x1, y1, x2, y2, '\n')        
         letter = ''
+        try:
+            if int(x1) > 0 and int(x2) > 0 and int(y1) > 0 and int(y2) > 0:
 
-        if int(x1) > 0 and int(x2) > 0 and int(y1) > 0 and int(y2) > 0:
+                crop = frame[y1:y2, x1:x2]
 
-            crop = frame[y1:y2, x1:x2]
+                from model_predict import predict
+                import numpy as np
             
-            from model_predict import predict
-            import numpy as np
-        
-            if crop != np.array([]):
-                letter = predict(crop, name)
-        
+                if crop != np.array([]):
+                    letter = predict(crop, name)
+        except:
+            continue
+
         print('letter - ', letter)
         
         if letter != '':
@@ -107,50 +110,69 @@ while True:
                 
                 if letter_prv == letter:
                 
-                    if count_w == 10:
+                    if count_w == 5:
                         
-                        word = word + letter
+                        word[wc] = word[wc] + letter
+                        last_closed = 1
                         count_w=0
-                        # print('word - ', word)
-
+                
                     else:
-                        # print('Count val - ', count_w)
                         count_w+=1
                 else:
                     letter_prv = ''
                     count_w = 0
         else:
 
-            if count_c <= 10:
+            if count_c <= 5:
                 count_c+=1
             else:
-                # print('Hi')
                 count_w = 0
                 count_c = 0
-                word = ''
+                word[wc] = ''
+
         cv.rectangle(frame, (x1, y1), (x2, y2), color=(0,255,0))
         frame = cv.flip(frame, 1)
-        if word != '':
-            cv.putText(frame, word, (100,100), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0,255,0), thickness=3)
-        else:
-            cv.putText(frame, ' ', (100,100), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0,255,0), thickness=3)
-        
+        cv.rectangle(frame, (0, 385), (600, 425), (255,255,255), thickness = -1)
+
+        text = ''
+        for i in range (0, wc+1):
+            text += word[i]
+            text += ' '
+
+        cv.putText(frame, text, (25, 413), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 0), thickness=1)
+
+
     else:
         frame = cv.flip(frame, 1)
-        word = ''
-    # else:
-    #     cv.putText(frame, '. .', (100,100), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0,255,0), thickness=3)
-        
 
-    # Display
-    # if crop != []:
-    #     cv.imshow("Image", crop)
-    # else:
+        from audio_player import toAudio
+        if last_closed == 1:
+            toAudio(word[wc])
+
+        if word[wc] != '':
+            wc += 1
+        else:
+            if wc == max_words:    
+                wc = 0
+                word = ['']*max_words
+
+
+        last_closed = 0
+        cv.rectangle(frame, (0, 385), (600, 425), (255,255,255), thickness = -1)
+        
+        text = ''
+        for i in range (0, wc+1):
+            text += word[i]
+            text += ' '
+
+        cv.putText(frame, text, (25, 413), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 0), thickness=1)
+        
     
     frame = np.concatenate((frame, signs), axis =1)
     cv.imshow("Image", frame)
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
+
 cap.release()
 cv.destroyAllWindows()

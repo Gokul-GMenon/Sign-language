@@ -34,7 +34,6 @@ detector = HandDetector(detectionCon = 0.5, maxHands = 2)
 n_img = 0
 
 i=0
-# text = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 text = ['0', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-1']
 
 sz1, sz2 = 600, 425
@@ -54,16 +53,12 @@ while True:
 
     # Find hands
     lm = detector.findHands(frame, draw = False)
-    # lm, bbox = detector.findPosition(img)
-
     x1 = y1 = x2 = y2 = ''
 
     crop = []
 
-    # print((lm == 0 and wait == 0) or text[i] == '0')
     if (lm and wait == 0) or text[i] == '0':
 
-        # print((lm == 0 and wait == 0) or text[i] == '0')
         # Saving the blank images
         if text[i] == '0':
             custom_name = 1
