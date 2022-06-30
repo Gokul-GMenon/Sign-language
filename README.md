@@ -46,7 +46,7 @@ root@Gokuls-Laptop:~/Sign-language# python hand_track.py
 <table>
   <tr>
 
-<td align="center"><a href="https://github.com/Gokul-GMenon"><img src="https://avatars.githubusercontent.com/u/76942680?s=400&u=610dfaac5f89ca089a69a62ccf9df283017bf60b&v=4" width="90px;" alt=""/><br /><sub><b>Gokul G Menon</b></sub></a><br />
+<td align="center"><a href="https://github.com/Gokul-GMenon"><img src="https://avatars.githubusercontent.com/u/76942680?s=400&u=610dfaac5f89ca089a69a62ccf9df283017bf60b&v=4" width="120px;" alt=""/><br /><sub><b>Gokul G Menon</b></sub></a><br />
 
 </tr>
 </table>
