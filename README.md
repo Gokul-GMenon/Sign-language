@@ -7,7 +7,7 @@ This repo hosts the code for a system that can convert American sign language to
 - gTTS  
   
 ## About the system :notes:
-- The core of the system is a machine learning model (find the notebook :star2: [here](www.google.com) :star2: ).
+- The core of the system is a machine learning model (find the notebook :star2: [here](https://github.com/Gokul-GMenon/Sign-language/tree/main/Custom_models) :star2: ).
 - An example dataset for the ML model can be found [here](https://www.kaggle.com/datasets/ayuraj/asl-dataset). The images undergoes the following transformations before being used for training:  
 :point_down::point_down::point_down:  
 ```python
@@ -33,7 +33,7 @@ where [NAME] is the name of the person whose database already exists. To use the
 root@Gokuls-Laptop:~/Sign-language# python hand_track.py
 ```  
 
-### Find the notebook for the base model [here](https://colab.research.google.com/drive/1JjcAAYZR43975aWQu8jv4tDkTuHbd3_F?usp=sharing). :revolving_hearts:
+### Find the notebook for the base model [here](https://github.com/Gokul-GMenon/Sign-language/tree/main/Custom_models). :revolving_hearts:
 
 ## Model Details
 - Framework: TensorFlow
