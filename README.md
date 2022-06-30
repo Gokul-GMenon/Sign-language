@@ -8,7 +8,7 @@ This repo hosts the code for a system that can convert American sign language to
   
 ## About the system :notes:
 - The core of the system is a machine learning model (find the notebook :star2: [here](www.google.com) :star2: ).
-- An example dataset for the ML model can be found [here](https://www.kaggle.com/datasets/ardamavi/sign-language-digits-dataset). The images undergoes the following transformations before being used for training:  
+- An example dataset for the ML model can be found [here](https://www.kaggle.com/datasets/ayuraj/asl-dataset). The images undergoes the following transformations before being used for training:  
 :point_down::point_down::point_down:  
 ```python
   gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)

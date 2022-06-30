@@ -7,14 +7,16 @@ ap = argparse.ArgumentParser()
 
 ap.add_argument('-n', '--name', required=True, help = 'name of the new user')
 args = ap.parse_args()
-name = ''
+name = 'base'
 last_closed = 0
 
-if os.path.exists(os.path.join('Custom_models', args.name + '_Model.h5')):
+if os.path.exists(os.path.join('Custom_models', args.name + '_Model.h5')) and name != 'base':
 
     name = args.name
     print("\n\n"+ name+" is available. Please wait...\n")
 
+elif name == 'base':
+    print("\n\nUsing base model. Please wait...\n")
 else:
 
     print("\n\nNo trained model of the said person is available!!\nEnter an available username or please train using detect_and_train.py!!\n")
