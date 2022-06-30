@@ -40,3 +40,12 @@ root@Gokuls-Laptop:~/Sign-language# python hand_track.py
 - Architecture: Convolutional Neural Network.
 - Recommends training till an accuracy of 80% on the training data atleast (can be improved with detect_and_train.py)
 
+## Contributors
+
+<table>
+  <tr>
+
+<td align="center"><a href="https://github.com/Gokul-GMenon"><img src="https://avatars.githubusercontent.com/u/76942680?s=400&u=610dfaac5f89ca089a69a62ccf9df283017bf60b&v=4" width="180px;" alt=""/><br /><sub><b>Gokul G Menon</b></sub></a><br />
+
+</tr>
+</table>
