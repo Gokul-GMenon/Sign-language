@@ -1,5 +1,5 @@
 # American Sign-language to Audio
-This repo hosts the code for a system that can convert American sign language to audio. As the title suggests, this system aims to establish efficient communication between normal language and sign language.
+This repo hosts the code for a system that can convert American sign language to audio. As the title suggests, this system aims to establish efficient communication between normal language and sign language.  
 
 ## Technologies used
 - OpenCV
@@ -10,7 +10,7 @@ This repo hosts the code for a system that can convert American sign language to
 - The core of the system is a machine learning model (find the notebook [here](www.google.com)).
 - An example dataset for the ML model can be found [here](https://www.kaggle.com/datasets/ardamavi/sign-language-digits-dataset). The images undergoes the following transformations before being used for training:  
 
-```
+```python
   gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
   blur = cv.GaussianBlur(gray,(5,5),2)
   th3 = cv.adaptiveThreshold(blur, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 11, 2)
@@ -40,11 +40,3 @@ root@Gokuls-Laptop:~/Sign-language# python hand_track.py
 - Architecture: Convolutional Neural Network.
 - Recommends training till an accuracy of 80% on the training data atleast (can be improved with detect_and_train.py)
 
-## Custom Training
-For best accuracy, please train custom model using your hands by running the following command in terminal (after installing all the dependencies):
-- python self_train\detect_and_train.py -n [NAME]
-where, [NAME] is the name of the person whose hand is being registered.
-
-After training has been completed, run hand_track.py using the following command:
-- python hand_track.py -n [NAME]
-where, [NAME] is the name of the persons whos trained model is available.
