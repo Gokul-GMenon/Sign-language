@@ -19,7 +19,7 @@ This repo hosts the code for a system that can convert American sign language to
 ```  
 
 - After training the model to the desired accuracy, you can save it in [Custom_models](https://github.com/Gokul-GMenon/Sign-language/tree/main/Custom_models) folder. Save it under the name: base_model.h5 :clap: :clap:
-- After the initial training procedure, the model can further be trained by trasnfer learning on the base model on the custom dataset of a person using [detect_and_train.py](https://github.com/Gokul-GMenon/Sign-language/blob/main/self_train/detect_and_train.py). You can run the python file using the command:  
+- After the initial training procedure, the model can further be trained by transfer learning on the base model on the custom dataset of a person using [detect_and_train.py](https://github.com/Gokul-GMenon/Sign-language/blob/main/self_train/detect_and_train.py). You can run the python file using the command:  
 ```
 root@Gokuls-Laptop:~/Sign-language# python self_train/detect_and_train.py -n [NAME]
 ```  
